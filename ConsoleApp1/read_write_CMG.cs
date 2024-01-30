@@ -217,13 +217,13 @@
 
 public class CMGWriter
 {
-    public static void WriteToFile(string cmgpath)
+    public static void WriteToFile(byte[][][] Header, byte[][][] Images, byte[][][] Masks, string path, string filename)
     {
 
         // change this later (was originally included as parameters to this function)
-        byte[][][] Header = new byte[0][][];
-        byte[,,] Images = new byte[0, 0, 0];
-        byte[,,] Masks = new byte[0, 0, 0];
+        //byte[][][] Header = new byte[0][][];
+        //byte[,,] Images = new byte[0, 0, 0];
+        //byte[,,] Masks = new byte[0, 0, 0];
 
         //string path = "";
         //
@@ -231,7 +231,7 @@ public class CMGWriter
 
         int numRuns = Images.GetLength(0);
         string slash = "/";
-        //string cmgPath = path + slash + filename + " .cmg";
+        string cmgpath = path + slash + filename + " .cmg";
 
         // cmg list (each element is a cmg, add it one by one)
         // property for each header (get and set)
@@ -244,86 +244,87 @@ public class CMGWriter
         {
             for (int n = 0; n < numRuns; n++)
             {
-                int H = Images.GetLength(1);
-                int W = Images.GetLength(2);
-                int numImage = Images.GetLength(0);
-                int numMask = Masks.GetLength(0);
+                int H = Images[n].GetLength(0);
+                int W = Images[n].GetLength(1);
+                int numImage = Images[n].GetLength(2);
+                int numMask = Masks[n].GetLength(2);
 
                 byte[,] I_RGB = new byte[H, W];
                 byte[,] I_Bitmap = new byte[H, W];
 
-                for (int z = 0; z < numImage; z++)
-                {
-                    for (int y = 0; y < H; y++)
-                    {
-                        I_RGB[y, z] = Images[n, y, z];
-                    }
-                }
+                //for (int z = 0; z < numImage; z++)
+                //{
+                //    for (int y = 0; y < H; y++)
+                //    {
+                //        I_RGB[y, z] = Images[n, y, z];
+                //    }
+                //}
 
-                for (int z = 0; z < numMask; z++)
-                {
-                    for (int y = 0; y < H; y++)
-                    {
-                        I_Bitmap[y, z] = Masks[n, y, z];
-                    }
-                }
+                //for (int z = 0; z < numMask; z++)
+                //{
+                //    for (int y = 0; y < H; y++)
+                //    {
+                //        I_Bitmap[y, z] = Masks[n, y, z];
+                //    }
+                //}
 
-                cmgfile.Write((byte)'c');
-                cmgfile.Write(Header[0][n]);
-                cmgfile.Write((byte)numImage);
-                cmgfile.Write(Header[2][n]);
-                cmgfile.Write(Header[3][n]);
-                cmgfile.Write(Header[4][n]);
-                cmgfile.Write(Header[5][n]);
-                cmgfile.Write(Header[6][n]);
-                cmgfile.Write(Header[7][n]);
-                cmgfile.Write(Header[8][n]);
-                cmgfile.Write(Header[9][n]);
-                cmgfile.Write(Header[10][n]);
-                cmgfile.Write(Header[11][n]);
-                cmgfile.Write((uint)W);
-                cmgfile.Write((uint)H);
-                cmgfile.Write(Header[14][n]);
-                cmgfile.Write(Header[15][n]);
-                cmgfile.Write(Header[16][n]);
-                cmgfile.Write(Header[17][n]);
-                cmgfile.Write(Header[18][n]);
-                cmgfile.Write(Header[19][n]);
-                cmgfile.Write(Header[20][n]);
-                cmgfile.Write(Header[21][n]);
-                cmgfile.Write(Header[22][n]);
-                cmgfile.Write(Header[23][n]);
-                cmgfile.Write(Header[24][n]);
-                cmgfile.Write(Header[25][n]);
-                cmgfile.Write(Header[26][n]);
-                cmgfile.Write(Header[27][n]);
-                cmgfile.Write(Header[28][n]);
-                cmgfile.Write(Header[29][n]);
-                cmgfile.Write(Header[30][n]);
-                cmgfile.Write(Header[31][n]);
-                cmgfile.Write(Header[32][n]);
-                cmgfile.Write(Header[33][n][0]);
-                cmgfile.Write(Header[33][n][1]);
-                cmgfile.Write(Header[34][n][0]);
-                cmgfile.Write(Header[34][n][1]);
-                cmgfile.Write(Header[34][n][2]);
-                cmgfile.Write(Header[34][n][3]);
-                cmgfile.Write(Header[34][n][4]);
-                cmgfile.Write(Header[34][n][5]);
-                cmgfile.Write(Header[34][n][6]);
-                cmgfile.Write(Header[34][n][7]);
-                cmgfile.Write(Header[34][n][8]);
-                cmgfile.Write(Header[35][n]);
-                cmgfile.Write(Header[36][n][0]);
-                cmgfile.Write(Header[36][n][1]);
-                cmgfile.Write(Header[36][n][2]);
+                cmgfile.Write((byte)'c'); 
+                cmgfile.Write(Header[0][n]); // Mode
+                cmgfile.Write((byte)numImage); // NBColorMap
+                cmgfile.Write(Header[2][n]); // Class
+                cmgfile.Write(Header[3][n]); // Screenx
+                cmgfile.Write(Header[4][n]); // Screeny
+                cmgfile.Write(Header[5][n]); // Stagex
+                cmgfile.Write(Header[6][n]); // Stagey
+                cmgfile.Write(Header[7][n]); // Stagez
+                cmgfile.Write(Header[8][n]); // Resolution
+                cmgfile.Write(Header[9][n]); // LowThreshold
+                cmgfile.Write(Header[10][n]); // MidThreshold
+                cmgfile.Write(Header[11][n]); // Group
+                cmgfile.Write((uint)W); // Width
+                cmgfile.Write((uint)H); // Height
+                cmgfile.Write(Header[14][n]); // Accession
+                cmgfile.Write(Header[15][n]); // Iod
+                cmgfile.Write(Header[16][n]); // Fluor
+                cmgfile.Write(Header[17][n]); // Diagnosis
+                cmgfile.Write(Header[18][n]); // RedFraction
+                cmgfile.Write(Header[19][n]); // GreenFraction
+                cmgfile.Write(Header[20][n]); // BlueFraction
+                cmgfile.Write(Header[21][n]); // Index
+                cmgfile.Write(Header[22][n]); // Objective
+                cmgfile.Write(Header[23][n]); // Calibrated
+                cmgfile.Write(Header[24][n]); // StackX_int
+                cmgfile.Write(Header[25][n]); // StackY_int
+                cmgfile.Write(Header[26][n]); // NbBitMap
+                cmgfile.Write(Header[27][n]); // CassettePosition
+                cmgfile.Write(Header[28][n]); // vorx
+                cmgfile.Write(Header[29][n]); // vory
+                cmgfile.Write(Header[30][n]); // BestFocusFrame
+                cmgfile.Write(Header[31][n]); // BackgroundFloat
+                cmgfile.Write(Header[32][n]); // PrimaryColorChannel
+                cmgfile.Write((byte) Header[33][n][0]); // Layer
+                cmgfile.Write(Header[33][n][1]); // Layers
+                cmgfile.Write(Header[34][n][0]); // Points
+                cmgfile.Write(Header[34][n][1]); // Points
+                cmgfile.Write(Header[34][n][2]); // Points
+                cmgfile.Write(Header[34][n][3]); // Points
+                cmgfile.Write(Header[34][n][4]); // Points
+                cmgfile.Write(Header[34][n][5]); // Points
+                cmgfile.Write(Header[34][n][6]); // Points
+                cmgfile.Write(Header[34][n][7]); // Points
+                cmgfile.Write(Header[34][n][8]); // Points
+                cmgfile.Write(Header[35][n]); // NumFeatures
+                cmgfile.Write(Header[36][n][0]); // RGB_Order
+                cmgfile.Write(Header[36][n][1]); // RGB_Order
+                cmgfile.Write(Header[36][n][2]); // RGB_Order
                 cmgfile.Write((byte)'$');
 
                 for (int z = 0; z < numImage; z++)
                 {
                     for (int y = 0; y < H; y++)
                     {
-                        cmgfile.Write(I_RGB[y, z]);
+                       
+                        cmgfile.Write(Images[n][y][z]);
                     }
                 }
 
@@ -331,7 +332,7 @@ public class CMGWriter
                 {
                     for (int y = 0; y < H; y++)
                     {
-                        cmgfile.Write(I_Bitmap[y, z]);
+                        cmgfile.Write(Masks[n][y][z]);
                     }
                 }
             }

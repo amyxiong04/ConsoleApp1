@@ -21,7 +21,32 @@
             var readData = CMGReader.ReadFromFile(inputFilePath);
 
             //    // Write the read data to another file using FileWriter
-            CMGWriter.WriteToFile(outputFilePath);
+            //CMGWriter.WriteToFile(outputFilePath);
+            byte[][][] Header = new byte[10][][];
+            Header[0] = new byte[2][];
+            Header[1] = new byte[2][];
+            Header[2] = new byte[3][];
+
+
+            byte[][][] Images = new byte[10][][];
+            Images[0] = new byte[2][];
+            Images[0][0] = new byte[] { 10, 20, 30 };
+            Images[0][1] = new byte[] { 40, 50, 60 };
+
+
+            byte[][][] Masks = new byte[10][][];
+            Masks[0] = new byte[2][];
+            Masks[0][0] = new byte[] { 100, 110, 120 };
+            Masks[0][1] = new byte[] { 130, 140, 150 };
+
+
+
+            string path = "C:\\Users\\axiong\\Desktop\\testwriteCMG";
+            string filename = "testwriteCMG";
+
+            CMGWriter.WriteToFile(Header, Images, Masks, path, filename);
+
+
 
             //    // Display the content of the output file
             Console.WriteLine($"Content of {outputFilePath}:");
