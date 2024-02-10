@@ -1,4 +1,9 @@
-﻿class CMGReader
+﻿using System;
+using System.IO;
+using System.Collections.Generic;
+using System.Text;
+
+class CMGReader
 {
     public static (byte[][][], byte[][][], object[]) ReadFromFile(string cmgpath)
     {
@@ -217,58 +222,28 @@
 
 public class CMGWriter
 {
-    public static void WriteToFile(byte[][][] Header, byte[][][] Images, byte[][][] Masks, string path, string filename)
+    public void WriteCMG(string[][] Header, byte[][][] Images, byte[][][] Masks, string path, string filename)
     {
+        int numRuns = Images.Length;
 
-        // change this later (was originally included as parameters to this function)
-        //byte[][][] Header = new byte[0][][];
-        //byte[,,] Images = new byte[0, 0, 0];
-        //byte[,,] Masks = new byte[0, 0, 0];
-
-        //string path = "";
-        //
-
-
-        int numRuns = Images.GetLength(0);
-        string slash = "/";
-        string cmgpath = path + slash + filename + " .cmg";
-
-        // cmg list (each element is a cmg, add it one by one)
-        // property for each header (get and set)
-        // 2d array instead of 3d array
-
-
-
+        string slash = Path.DirectorySeparatorChar.ToString();
+        string cmgpath = Path.Combine(path, filename + ".cmg");
 
         using (BinaryWriter cmgfile = new BinaryWriter(File.Open(cmgpath, FileMode.Create)))
         {
             for (int n = 0; n < numRuns; n++)
             {
-                int H = Images[n].GetLength(0);
-                int W = Images[n].GetLength(1);
-                int numImage = Images[n].GetLength(2);
-                int numMask = Masks[n].GetLength(2);
+                Images[n] = new byte[128][];
+                Masks[n] = new byte[20][];
 
-                byte[,] I_RGB = new byte[H, W];
-                byte[,] I_Bitmap = new byte[H, W];
 
-                //for (int z = 0; z < numImage; z++)
-                //{
-                //    for (int y = 0; y < H; y++)
-                //    {
-                //        I_RGB[y, z] = Images[n, y, z];
-                //    }
-                //}
+                int H = Images[n].Length;
+                int W = Images[n].Length; // Assuming Images[n][0] is not null
+                int numImage = Images[n].Length;
+                int numMask = Masks[n].Length;
 
-                //for (int z = 0; z < numMask; z++)
-                //{
-                //    for (int y = 0; y < H; y++)
-                //    {
-                //        I_Bitmap[y, z] = Masks[n, y, z];
-                //    }
-                //}
-
-                cmgfile.Write((byte)'c'); 
+                // Write Header Data
+                cmgfile.Write('c');
                 cmgfile.Write(Header[0][n]); // Mode
                 cmgfile.Write((byte)numImage); // NBColorMap
                 cmgfile.Write(Header[2][n]); // Class
@@ -277,32 +252,54 @@ public class CMGWriter
                 cmgfile.Write(Header[5][n]); // Stagex
                 cmgfile.Write(Header[6][n]); // Stagey
                 cmgfile.Write(Header[7][n]); // Stagez
-                cmgfile.Write(Header[8][n]); // Resolution
+
+                //cmgfile.Write(BitConverter.GetBytes(Header[8][n])); // Resolution
+                byte[] resolution = Encoding.ASCII.GetBytes(Header[8][n]);
+                cmgfile.Write(resolution);
+
                 cmgfile.Write(Header[9][n]); // LowThreshold
                 cmgfile.Write(Header[10][n]); // MidThreshold
                 cmgfile.Write(Header[11][n]); // Group
-                cmgfile.Write((uint)W); // Width
-                cmgfile.Write((uint)H); // Height
+                cmgfile.Write(BitConverter.GetBytes(W)); // Width
+                cmgfile.Write(BitConverter.GetBytes(H)); // Height
                 cmgfile.Write(Header[14][n]); // Accession
-                cmgfile.Write(Header[15][n]); // Iod
+
+                //cmgfile.Write(BitConverter.GetBytes(Header[15][n])); // Iod
+                byte[] iod = Encoding.ASCII.GetBytes(Header[15][n]);
+                cmgfile.Write(iod);
+
                 cmgfile.Write(Header[16][n]); // Fluor
                 cmgfile.Write(Header[17][n]); // Diagnosis
-                cmgfile.Write(Header[18][n]); // RedFraction
-                cmgfile.Write(Header[19][n]); // GreenFraction
-                cmgfile.Write(Header[20][n]); // BlueFraction
+
+                //cmgfile.Write(BitConverter.GetBytes(Header[18][n])); // RedFraction
+                byte[] redfraction = Encoding.ASCII.GetBytes(Header[18][n]);
+                cmgfile.Write(redfraction);
+
+                //cmgfile.Write(BitConverter.GetBytes(Header[19][n])); // GreenFraction
+                byte[] greenfraction = Encoding.ASCII.GetBytes(Header[19][n]);
+                cmgfile.Write(greenfraction);
+
+                //cmgfile.Write(BitConverter.GetBytes(Header[20][n])); // BlueFraction
+                byte[] bluefraction = Encoding.ASCII.GetBytes(Header[20][n]);
+                cmgfile.Write(bluefraction);
+
                 cmgfile.Write(Header[21][n]); // Index
                 cmgfile.Write(Header[22][n]); // Objective
                 cmgfile.Write(Header[23][n]); // Calibrated
                 cmgfile.Write(Header[24][n]); // StackX_int
                 cmgfile.Write(Header[25][n]); // StackY_int
-                cmgfile.Write(Header[26][n]); // NbBitMap
+                cmgfile.Write((byte)numMask); // NbBitMap
                 cmgfile.Write(Header[27][n]); // CassettePosition
                 cmgfile.Write(Header[28][n]); // vorx
                 cmgfile.Write(Header[29][n]); // vory
                 cmgfile.Write(Header[30][n]); // BestFocusFrame
-                cmgfile.Write(Header[31][n]); // BackgroundFloat
+
+                //cmgfile.Write(BitConverter.GetBytes(Header[31][n])); // BackgroundFloat
+                byte[] backgroundfloat = Encoding.ASCII.GetBytes(Header[31][n]);
+                cmgfile.Write(backgroundfloat);
+
                 cmgfile.Write(Header[32][n]); // PrimaryColorChannel
-                cmgfile.Write((byte) Header[33][n][0]); // Layer
+                cmgfile.Write(Header[33][n][0]); // Layer
                 cmgfile.Write(Header[33][n][1]); // Layers
                 cmgfile.Write(Header[34][n][0]); // Points
                 cmgfile.Write(Header[34][n][1]); // Points
@@ -317,22 +314,29 @@ public class CMGWriter
                 cmgfile.Write(Header[36][n][0]); // RGB_Order
                 cmgfile.Write(Header[36][n][1]); // RGB_Order
                 cmgfile.Write(Header[36][n][2]); // RGB_Order
-                cmgfile.Write((byte)'$');
+                cmgfile.Write('$');
 
-                for (int z = 0; z < numImage; z++)
+                // Write Image Data
+                if (Images[n][0] != null) // Check if Images[n][0] is not null
                 {
-                    for (int y = 0; y < H; y++)
+                    for (int z = 0; z < numImage; z++)
                     {
-                       
-                        cmgfile.Write(Images[n][y][z]);
+                        for (int y = 0; y < H; y++)
+                        {
+                            cmgfile.Write(Images[n][y][z]);
+                        }
                     }
                 }
 
-                for (int z = 0; z < numMask; z++)
+                // Write Mask Data
+                if (Masks[n][0] != null) // Check if Masks[n][0] is not null
                 {
-                    for (int y = 0; y < H; y++)
+                    for (int z = 0; z < numMask; z++)
                     {
-                        cmgfile.Write(Masks[n][y][z]);
+                        for (int y = 0; y < H; y++)
+                        {
+                            cmgfile.Write(Masks[n][y][z]);
+                        }
                     }
                 }
             }
