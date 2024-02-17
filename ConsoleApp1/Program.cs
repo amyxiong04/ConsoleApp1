@@ -34,56 +34,55 @@
             Header[7] = new string[] { "Mode1", "Value1", "Value2" };
             Header[8] = new string[] { "Mode1", "Value1", "Value2" };
             Header[9] = new string[] { "Mode1", "Value1", "Value2" };
-            Header[10]= new string[] { "Mode1", "Value1", "Value2" };
-            Header[11]= new string[] { "Mode1", "Value1", "Value2" };
-            Header[12]= new string[] { "Mode1", "Value1", "Value2" };
-            Header[13]= new string[] { "Mode1", "Value1", "Value2" };
-            Header[14]= new string[] { "Mode1", "Value1", "Value2" };
-            Header[15]= new string[] { "Mode1", "Value1", "Value2" };
-            Header[16]= new string[] { "Mode1", "Value1", "Value2" };
-            Header[17]= new string[] { "Mode1", "Value1", "Value2" };
-            Header[18]= new string[] { "Mode1", "Value1", "Value2" };
-            Header[19]= new string[] { "Mode1", "Value1", "Value2" };
-            Header[20]= new string[] { "Mode1", "Value1", "Value2" };
-            Header[21]= new string[] { "Mode1", "Value1", "Value2" };
-            Header[22]= new string[] { "Mode1", "Value1", "Value2" };
-            Header[23]= new string[] { "Mode1", "Value1", "Value2" };
-            Header[24]= new string[] { "Mode1", "Value1", "Value2" };
-            Header[25]= new string[] { "Mode1", "Value1", "Value2" };
-            Header[27]= new string[] { "Mode1", "Value1", "Value2" };
-            Header[28]= new string[] { "Mode1", "Value1", "Value2" };
-            Header[29]= new string[] { "Mode1", "Value1", "Value2" };
-            Header[30]= new string[] { "Mode1", "Value1", "Value2" };
-            Header[31]= new string[] { "Mode1", "Value1", "Value2" };
-            Header[32]= new string[] { "Mode1", "Value1", "Value2" };
-            Header[33]= new string[] { "Mode1", "Value1", "Value2" };
-            Header[33]= new string[] { "Mode1", "Value1", "Value2" };
-            Header[34] = new string[] { "Mode1", "Value1", "Value2", "Value3", "Value4" };
-            Header[34]= new string[] { "Mode1", "Value1", "Value2" };
-            Header[34]= new string[] { "Mode1", "Value1", "Value2" };
-            Header[34]= new string[] { "Mode1", "Value1", "Value2" };
-            Header[34]= new string[] { "Mode1", "Value1", "Value2" };
-            Header[34]= new string[] { "Mode1", "Value1", "Value2" };
-            Header[34]= new string[] { "Mode1", "Value1", "Value2" };
-            Header[34]= new string[] { "Mode1", "Value1", "Value2" };
-            Header[34]= new string[] { "Mode1", "Value1", "Value2" };
-            Header[35]= new string[] { "Mode1", "Value1", "Value2" };
-            Header[36]= new string[] { "Mode1", "Value1", "Value2" };
-            Header[36]= new string[] { "Mode1", "Value1", "Value2" };
-            Header[36] = new string[] { "Mode1", "Value1", "Value2" };
+            Header[10] = new string[] { "Mode1", "Value1", "Value2" };
+            Header[11] = new string[] { "Mode1", "Value1", "Value2" };
+            Header[12] = new string[] { "Mode1", "Value1", "Value2" };
+            Header[13] = new string[] { "Mode1", "Value1", "Value2" };
+            Header[14] = new string[] { "Mode1", "Value1", "Value2" };
+            Header[15] = new string[] { "Mode1", "Value1", "Value2" };
+            Header[16] = new string[] { "Mode1", "Value1", "Value2" };
+            Header[17] = new string[] { "Mode1", "Value1", "Value2" };
+            Header[18] = new string[] { "Mode1", "Value1", "Value2" };
+            Header[19] = new string[] { "Mode1", "Value1", "Value2" };
+            Header[20] = new string[] { "Mode1", "Value1", "Value2" };
+            Header[21] = new string[] { "Mode1", "Value1", "Value2" };
+            Header[22] = new string[] { "Mode1", "Value1", "Value2" };
+            Header[23] = new string[] { "Mode1", "Value1", "Value2" };
+            Header[24] = new string[] { "Mode1", "Value1", "Value2" };
+            Header[25] = new string[] { "Mode1", "Value1", "Value2" };
+            Header[27] = new string[] { "Mode1", "Value1", "Value2" };
+            Header[28] = new string[] { "Mode1", "Value1", "Value2" };
+            Header[29] = new string[] { "Mode1", "Value1", "Value2" };
+            Header[30] = new string[] { "Mode1", "Value1", "Value2" };
+            Header[31] = new string[] { "Mode1", "Value1", "Value2" };
+            Header[32] = new string[] { "Mode1", "Value1", "Value2" };
+            Header[33] = new string[] { "Mode1", "Value1", "Value2" };
+            Header[33] = new string[] { "Mode1", "Value1", "Value2" };
+
+            //int numRuns = 10;
+            //Header[34] = new string[numRuns]; // Assuming numRuns is the number of elements in Header[34]
+
+            //for (int i = 0; i < numRuns; i++)
+            //{
+            //    Header[34][i] = new string[6]; // Ensure there are at least 6 elements
+            //    Header[34][i][5] = "Value6"; // Assign a value to index 5
+            //}
+
+            Header[34] = new string[] { "Mode1", "Value1", "Value2", "Value3", "Value4", "Value5"};
+            Header[34] = new string[] { "Mode1", "Value1", "Value2", "Value3", "Value4", "Value5" };
+            Header[34] = new string[] { "Mode1", "Value1", "Value2", "Value3", "Value4", "Value5" };
+            Header[34] = new string[] { "Mode1", "Value1", "Value2", "Value3", "Value4", "Value5" };
+            Header[34] = new string[] { "Mode1", "Value1", "Value2", "Value3", "Value4", "Value5" };
+            Header[34] = new string[] { "Mode1", "Value1", "Value2", "Value3", "Value4", "Value5" };
+            Header[34] = new string[] { "Mode1", "Value1", "Value2", "Value3", "Value4", "Value5" };
+            Header[34] = new string[] { "Mode1", "Value1", "Value2", "Value3", "Value4", "Value5" };
+            Header[34] = new string[] { "Mode1", "Value1", "Value2", "Value3", "Value4", "Value5" };
 
 
-
-
-
-
-
-
-
-
-
-
-
+            Header[35] = new string[] { "Mode1", "Value1", "Value2", "Value3", "Value4", "Value5" };
+            Header[36] = new string[] { "Mode1", "Value1", "Value2", "Value3", "Value4", "Value5" };
+            Header[36] = new string[] { "Mode1", "Value1", "Value2", "Value3", "Value4", "Value5" };
+            Header[36] = new string[] { "Mode1", "Value1", "Value2", "Value3", "Value4", "Value5" };
 
 
 

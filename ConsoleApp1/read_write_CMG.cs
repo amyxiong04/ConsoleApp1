@@ -3,7 +3,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Text;
 
-class CMGReader
+class Reader
 {
     public static (byte[][][], byte[][][], object[]) ReadFromFile(string cmgpath)
     {
@@ -30,7 +30,9 @@ class CMGReader
                 {
                     if (cmgdata[bcurrent + 127 + metapadding] != '$')//36)
                     {
-                        metapadding = metapadding + 1;
+                        //metapadding = metapadding + 1;
+                        metapadding++;
+
                     }
                     else
                     {
@@ -43,6 +45,7 @@ class CMGReader
                 bcurrent = bcurrent + imagesize * NBColorMap;
                 bcurrent = bcurrent + imagesize * NBBitMap;
                 icount = icount + 1;
+
             }
 
             int ctotal = icount;
@@ -219,8 +222,7 @@ class CMGReader
 }
 
 
-
-public class CMGWriter
+public class Writer
 {
     public void WriteCMG(string[][] Header, byte[][][] Images, byte[][][] Masks, string path, string filename)
     {
@@ -307,6 +309,7 @@ public class CMGWriter
                 cmgfile.Write(Header[34][n][3]); // Points
                 cmgfile.Write(Header[34][n][4]); // Points
                 cmgfile.Write(Header[34][n][5]); // Points
+                cmgfile.Write("testing");
                 cmgfile.Write(Header[34][n][6]); // Points
                 cmgfile.Write(Header[34][n][7]); // Points
                 cmgfile.Write(Header[34][n][8]); // Points
@@ -467,6 +470,7 @@ public class CMGWriter
                     for (int y = 0; y < H; y++)
                     {
                         writer.Write(I_Bitmap[y, z]);
+
                     }
                 }
             }
