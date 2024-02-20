@@ -5,6 +5,8 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
+
+// class representing CMG reader
 public class CMGReader
 {
     public static CMGCell[] ReadFromFile(string cmgPath)

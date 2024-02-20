@@ -1,5 +1,6 @@
-﻿namespace ConsoleApp1
+﻿namespace CMGReadAndWrite
 {
+    // class representing main Program
     class Program
     {
         static void Main(string[] args)
@@ -69,10 +70,10 @@
 
             string writePath = @"C:\Users\axiong\Desktop\testwriteCMG";
             CMGWriter cmgWriter = new CMGWriter();
-            Console.WriteLine("Before writing to file");
             cmgWriter.WriteCMG(cells, writePath, "testwrite");
-            Console.WriteLine("Written to file");
+            Console.WriteLine("Successfully written to CMG file");
 
+        }
     }
 }
 

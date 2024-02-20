@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
+// class representing one CMG cell object
 public class CMGCell
 {
     // properties representing the header data

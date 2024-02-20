@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+// class representing CMG writer
 class CMGWriter
 {
     // public void WriteCMG(string[][] Header, CMGCell[] cells, string path, string filename)
