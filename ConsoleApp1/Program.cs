@@ -4,96 +4,75 @@
     {
         static void Main(string[] args)
         {
-            // reading
-            var inputFilePath = args[0];
-            var outputFilePath = args[1];
-            //string inputFilePath = "input.txt";
-            //string outputFilePath = "output.txt";
-            //string inputData = "Hello, this is a test!";
+            // reading from file
 
-            //    // Create instances of FileReader and FileWriter
-            //CMGReader cmgReader = new CMGReader();
-            //    CMGWriter cmgWriter = new CMGWriter();
+            string path = @"C:\Users\axiong\Desktop\testwriteCMG\testCmg100.cmg";
+            CMGCell[] cells = CMGReader.ReadFromFile(path);
+            Console.WriteLine(cells.Length);
 
-            //    // Write data to a file using FileWriter
-            //    cmgWriter.WriteToFile(inputFilePath, inputData);
+            if (cells != null && cells.Length > 0)
+            {
+                int cellNumber = 1;
+                // Display information or perform operations with CMGCell objects
+                foreach (CMGCell cell in cells)
+                {
+                    Console.WriteLine($"CMG Cell {cellNumber} Features:");
+                    Console.WriteLine($"Mode: {cell.Mode}");
+                    Console.WriteLine($"NB Color Map: {cell.NbColorMap}");
+                    Console.WriteLine($"Class: {cell.Class}");
+                    Console.WriteLine($"ScreenX: {cell.Screenx}");
+                    Console.WriteLine($"ScreenY: {cell.Screeny}");
+                    Console.WriteLine($"StageX: {cell.Stagex}");
+                    Console.WriteLine($"StageY: {cell.Stagey}");
+                    Console.WriteLine($"StageZ: {cell.Stagez}");
+                    Console.WriteLine($"Resolution: {cell.Resolution}");
+                    Console.WriteLine($"LowThreshold: {cell.LowThreshold}");
+                    Console.WriteLine($"MidThreshold: {cell.MidThreshold}");
+                    Console.WriteLine($"Group: {cell.Group}");
+                    Console.WriteLine($"Width: {cell.Width}");
+                    Console.WriteLine($"Height: {cell.Height}");
+                    Console.WriteLine($"Accession: {cell.Accession}");
+                    Console.WriteLine($"Iod: {cell.Iod}");
+                    Console.WriteLine($"Fluor: {cell.Fluor}");
+                    Console.WriteLine($"Diagnosis: {cell.Diagnosis}");
+                    Console.WriteLine($"RedFaction: {cell.RedFaction}");
+                    Console.WriteLine($"GreenFaction: {cell.GreenFaction}");
+                    Console.WriteLine($"BlueFaction: {cell.BlueFaction}");
+                    Console.WriteLine($"Index: {cell.Index}");
+                    Console.WriteLine($"Objective: {cell.Objective}");
+                    Console.WriteLine($"Calibrated: {cell.Calibrated}");
+                    Console.WriteLine($"StackXInt: {cell.StackXInt}");
+                    Console.WriteLine($"StackYInt: {cell.StackYInt}");
+                    Console.WriteLine($"NbBitMap: {cell.NbBitMap}");
+                    Console.WriteLine($"CassettePosition: {cell.CassettePosition}");
+                    Console.WriteLine($"VorX: {cell.Vorx}");
+                    Console.WriteLine($"VorY: {cell.Vory}");
+                    Console.WriteLine($"BestFocusFrame: {cell.BestFocusFrame}");
+                    Console.WriteLine($"BackgroundFloat: {cell.BackgroundFloat}");
+                    Console.WriteLine($"PrimaryColourChannel: {cell.PrimaryColourChannel}");
+                    Console.WriteLine($"Layer: {cell.Layer}");
+                    Console.WriteLine($"Points: {cell.Points}");
+                    Console.WriteLine($"NumFeature: {cell.NumFeature}");
+                    Console.WriteLine($"RGBOrder: {cell.RGBOrder}");
+                    Console.WriteLine();
 
-            //    // Read data from the file using FileReader
-            var readData = CMGReader.ReadFromFile(inputFilePath);
-
-
-            // writing
-            // Example usage
-            string[][] Header = new string[37][]; // Example header data
-            Header[0] = new string[] { "Mode1", "Value1", "Value2" };
-            Header[2] = new string[] { "Mode1", "Value1", "Value2" };
-            Header[3] = new string[] { "Mode1", "Value1", "Value2" };
-            Header[4] = new string[] { "Mode1", "Value1", "Value2" };
-            Header[5] = new string[] { "Mode1", "Value1", "Value2" };
-            Header[6] = new string[] { "Mode1", "Value1", "Value2" };
-            Header[7] = new string[] { "Mode1", "Value1", "Value2" };
-            Header[8] = new string[] { "Mode1", "Value1", "Value2" };
-            Header[9] = new string[] { "Mode1", "Value1", "Value2" };
-            Header[10] = new string[] { "Mode1", "Value1", "Value2" };
-            Header[11] = new string[] { "Mode1", "Value1", "Value2" };
-            Header[12] = new string[] { "Mode1", "Value1", "Value2" };
-            Header[13] = new string[] { "Mode1", "Value1", "Value2" };
-            Header[14] = new string[] { "Mode1", "Value1", "Value2" };
-            Header[15] = new string[] { "Mode1", "Value1", "Value2" };
-            Header[16] = new string[] { "Mode1", "Value1", "Value2" };
-            Header[17] = new string[] { "Mode1", "Value1", "Value2" };
-            Header[18] = new string[] { "Mode1", "Value1", "Value2" };
-            Header[19] = new string[] { "Mode1", "Value1", "Value2" };
-            Header[20] = new string[] { "Mode1", "Value1", "Value2" };
-            Header[21] = new string[] { "Mode1", "Value1", "Value2" };
-            Header[22] = new string[] { "Mode1", "Value1", "Value2" };
-            Header[23] = new string[] { "Mode1", "Value1", "Value2" };
-            Header[24] = new string[] { "Mode1", "Value1", "Value2" };
-            Header[25] = new string[] { "Mode1", "Value1", "Value2" };
-            Header[27] = new string[] { "Mode1", "Value1", "Value2" };
-            Header[28] = new string[] { "Mode1", "Value1", "Value2" };
-            Header[29] = new string[] { "Mode1", "Value1", "Value2" };
-            Header[30] = new string[] { "Mode1", "Value1", "Value2" };
-            Header[31] = new string[] { "Mode1", "Value1", "Value2" };
-            Header[32] = new string[] { "Mode1", "Value1", "Value2" };
-            Header[33] = new string[] { "Mode1", "Value1", "Value2" };
-            Header[33] = new string[] { "Mode1", "Value1", "Value2" };
-
-            //int numRuns = 10;
-            //Header[34] = new string[numRuns]; // Assuming numRuns is the number of elements in Header[34]
-
-            //for (int i = 0; i < numRuns; i++)
-            //{
-            //    Header[34][i] = new string[6]; // Ensure there are at least 6 elements
-            //    Header[34][i][5] = "Value6"; // Assign a value to index 5
-            //}
-
-            Header[34] = new string[] { "Mode1", "Value1", "Value2", "Value3", "Value4", "Value5"};
-            Header[34] = new string[] { "Mode1", "Value1", "Value2", "Value3", "Value4", "Value5" };
-            Header[34] = new string[] { "Mode1", "Value1", "Value2", "Value3", "Value4", "Value5" };
-            Header[34] = new string[] { "Mode1", "Value1", "Value2", "Value3", "Value4", "Value5" };
-            Header[34] = new string[] { "Mode1", "Value1", "Value2", "Value3", "Value4", "Value5" };
-            Header[34] = new string[] { "Mode1", "Value1", "Value2", "Value3", "Value4", "Value5" };
-            Header[34] = new string[] { "Mode1", "Value1", "Value2", "Value3", "Value4", "Value5" };
-            Header[34] = new string[] { "Mode1", "Value1", "Value2", "Value3", "Value4", "Value5" };
-            Header[34] = new string[] { "Mode1", "Value1", "Value2", "Value3", "Value4", "Value5" };
+                    cellNumber++;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Failed to read CMG file");
+            }
 
 
-            Header[35] = new string[] { "Mode1", "Value1", "Value2", "Value3", "Value4", "Value5" };
-            Header[36] = new string[] { "Mode1", "Value1", "Value2", "Value3", "Value4", "Value5" };
-            Header[36] = new string[] { "Mode1", "Value1", "Value2", "Value3", "Value4", "Value5" };
-            Header[36] = new string[] { "Mode1", "Value1", "Value2", "Value3", "Value4", "Value5" };
+            // writing to file
 
-
-
-            byte[][][] Images = new byte[1][][]; // Example image data
-            byte[][][] Masks = new byte[1][][]; // Example mask data
-            string path = @"C:\Users\axiong\Desktop\testwriteCMG";
-            string filename = "example";
-
+            string writePath = @"C:\Users\axiong\Desktop\testwriteCMG";
             CMGWriter cmgWriter = new CMGWriter();
-            cmgWriter.WriteCMG(Header, Images, Masks, path, filename);
-        }
+            Console.WriteLine("Before writing to file");
+            cmgWriter.WriteCMG(cells, writePath, "testwrite");
+            Console.WriteLine("Written to file");
+
     }
 }
 

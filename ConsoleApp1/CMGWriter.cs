@@ -6,20 +6,22 @@ using System.Threading.Tasks;
 
 class CMGWriter
 {
-    public void WriteCMG(string[][] Header, CMGCell[] cells, string path, string filename)
+    // public void WriteCMG(string[][] Header, CMGCell[] cells, string path, string filename)
+    public void WriteCMG(CMGCell[] cells, string path, string filename)
     {
-        string cmgPath = Path.Combine(path, filename + " .cmg");
+        string cmgPath = Path.Combine(path, filename + ".cmg");
 
         using (BinaryWriter cmgFile = new BinaryWriter(File.Open(cmgPath, FileMode.Create)))
         {
             foreach (var cell in cells)
             {
-                WriteCellData(cmgFile, cell, Header);
+                WriteCellData(cmgFile, cell);
             }
         }
     }
 
-    private void WriteCellData(BinaryWriter writer, CMGCell cell, string[][] Header)
+    // private void WriteCellData(BinaryWriter writer, CMGCell cell, string[][] Header)
+    private void WriteCellData(BinaryWriter writer, CMGCell cell)
     {
         int H = (int)cell.Height;
         int W = (int)cell.Width;
